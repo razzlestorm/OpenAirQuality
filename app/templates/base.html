@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>OpenAQ - {{ title }}</title>
+  </head>
+  <body>
+      {% block content %}
+
+      <form action="/refresh" method="post">
+        <input type="text" name="country" placeholder="Country to add">
+        <input type="submit" value="Add Country">
+      </form>
+      <form action="/refresh" method="post">
+        <input type="text" name="city" placeholder="City to add">
+        <input type="submit" value="Add City">
+      </form>
+
+      <div>
+        <h2>Potentially risky PM2.5 levels noted at the following times!</h2>
+            <ul>
+        {% for result in results %}
+                <li>{{ result.datetime }} - {{ result.value }}</li>
+        {% endfor %}
+            </ul>
+      </div>
+      {% endblock %}
+  </body>
+</html>
